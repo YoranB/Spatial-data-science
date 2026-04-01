@@ -1,60 +1,74 @@
-# EPA 122A Spatial Data Science  
-## Final Project: Urban Design and Crime Exposure in Amsterdam
+# Spatial Data Science Project
 
-This repository contains the code, data processing steps, exploratory spatial analysis, and modelling work for the final project of the course **EPA 122A Spatial Data Science (2025–2026)**.
+## Urban Design and Crime Exposure in Amsterdam
 
-The project follows the full spatial data science workflow as required in the course, including problem formulation, data collection, exploratory data analysis (EDA), spatial analysis, modelling, and interpretation.
+This repository presents a spatial data science project on how neighborhood-level crime in Amsterdam is distributed across space and how built-environment features help explain those patterns.
 
-## Project Description
+The project combines data preparation, exploratory spatial data analysis, mapping, and a regularized regression model. The curated repo is organized so GitHub readers can quickly find the final analysis notebooks, the supporting datasets, and the archived exploratory work.
 
-This project is titled **A Spatial Analysis of How Urban Design Shapes Crime Exposure in Amsterdam**. It studies how neighbourhood crime in Amsterdam is distributed across space and whether specific features of the built environment help explain differences in neighbourhood-level crime exposure.
+## Research Question
 
-**What we know:** crime is spatially patterned and linked to urban form and socio-economic vulnerability.  
-**What we do not know:** how specific elements of Amsterdam’s built environment contribute to neighbourhood crime exposure in a measurable way.
+How is neighborhood crime spatially clustered in Amsterdam, and how well can environmental design features such as tree density, streetlight density, and distance to facilities predict neighborhood crime rates?
 
-**Main research question:**  
-**How is neighbourhood crime spatially clustered in Amsterdam, and how well can environmental design features (green space, lighting, distance to facilities) predict neighbourhood crime rates?**
+## Methods
 
-The project uses **Exploratory Spatial Data Analysis** to test and visualise clustering (Global Moran’s I and LISA), and then applies a **regularised regression model (ridge regression)** to evaluate predictive performance under correlated predictors. The analysis uses neighbourhood-level crime rates and built-environment indicators including **tree density**, **streetlight density**, and **mean distance to groups of**
+- Data cleaning and neighborhood-level feature construction
+- Choropleth mapping of neighborhood crime rates
+- Spatial autocorrelation analysis with Moran's I and LISA
+- Ridge regression for correlated spatial predictors
 
+## Recommended Reading Path
 
-## Research Focus
+Start with the curated notebooks in [`notebooks/01_core/`](notebooks/01_core/):
 
-The project addresses the following elements required by the course:
+1. [`01_build-analysis-dataset.ipynb`](notebooks/01_core/01_build-analysis-dataset.ipynb) builds the final neighborhood analysis table from the intermediate project datasets.
+2. [`02_crime-choropleth.ipynb`](notebooks/01_core/02_crime-choropleth.ipynb) maps crime rates across Amsterdam neighborhoods.
+3. [`03_spatial-autocorrelation.ipynb`](notebooks/01_core/03_spatial-autocorrelation.ipynb) evaluates spatial clustering using global and local autocorrelation.
+4. [`04_ridge-model.ipynb`](notebooks/01_core/04_ridge-model.ipynb) fits the predictive model and interprets the coefficients.
 
-- a clearly formulated project question derived from the provided project theme  
-- spatially explicit data sources  
-- exploratory spatial data analysis  
-- visualisation of spatial patterns  
-- baseline modelling and interpretation of results  
+Earlier exploratory work is preserved in [`notebooks/99_archive/`](notebooks/99_archive/).
 
-The exact research question is refined during the EDA phase and documented in the notebooks.
+## Repository Layout
 
-## Repository Structure
+```text
+.
+├── data/
+│   ├── raw/
+│   ├── intermediate/
+│   ├── final/
+│   └── archive/
+├── docs/
+│   ├── data-catalog.md
+│   └── figures/
+├── notebooks/
+│   ├── 01_core/
+│   ├── 99_archive/
+│   └── README.md
+├── requirements.txt
+└── README.md
+```
 
-Each notebook corresponds to a specific stage in the data science workflow and can be read independently.
+## Data Layout
 
-## Methods and Techniques
+- [`data/raw/`](data/raw/) contains source files used to construct the analysis data.
+- [`data/intermediate/`](data/intermediate/) contains merged and aggregated project tables.
+- [`data/final/`](data/final/) contains the final modeling dataset.
+- [`data/archive/`](data/archive/) contains superseded or ambiguous historical artifacts retained for provenance.
 
-The project applies the following spatial data science methods:
+Dataset details are documented in [`docs/data-catalog.md`](docs/data-catalog.md).
 
-- data cleaning and reconciliation of spatial datasets  
-- spatial joins and feature engineering  
-- choropleth mapping and spatial visualisation  
-- exploratory spatial data analysis  
-- spatial autocorrelation analysis  
-- baseline statistical or machine learning models using spatial features  
+## Reproduction
 
-All analyses are conducted in Python using standard spatial data science libraries.
+Create a Python environment and install the project dependencies:
 
-## Software and Environment
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
 
-The project is implemented in Python. Key libraries include:
+Then open the notebooks in [`notebooks/01_core/`](notebooks/01_core/) and run them in sequence.
 
-- pandas and numpy  
-- geopandas  
-- matplotlib and seaborn  
-- scikit-learn  
-- spatial analysis libraries where applicable  
+## Example Output
 
-
+![Correlation heatmap](docs/figures/correlation_heatmap_pearson.png)

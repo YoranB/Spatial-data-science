@@ -1,0 +1,12 @@
+pandas
+numpy
+geopandas
+matplotlib
+seaborn
+scikit-learn
+scipy
+shapely
+pyogrio
+libpysal
+esda
+splot
